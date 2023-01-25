@@ -1,4 +1,5 @@
 const express = require("express")
+const path = require("path");
 const cors = require("cors")
 const logger = require("morgan")
 const session = require("express-session")
@@ -22,6 +23,9 @@ if (process.env.NODE_ENV === "PROD") {
 } else {
   app.use(cors())
 }
+
+//Providing path to the frontend's static folder
+app.use(express.static(path.join(__dirname, "../frontend/dist/spa")));
 
 const dbURI = process.env.dbURI
 const port = process.env.PORT || 3000
@@ -85,7 +89,11 @@ dbConnection
     })
   })
   .catch((err) => console.error(err))
-
+app.use((req,res)=>{
+  if (process.env.NODE_ENV == "PROD") {
+    res.sendFile(path.join(__dirname, "../frontend/dist/spa/index.html"));
+  }
+})
 app.use("/api", routes)
 app.use("*", (req, res) => {
   res.status("404").json({

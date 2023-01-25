@@ -6,9 +6,8 @@
   "author": "Afsarul Islam Meraj <afsarulislammeraj4@gmail.com>",
   "private": true,
   "scripts": {
-    "prod": "npm install && npm link @quasar/cli && quasar build",
-    "serve": "quasar serve dist/spa --history",
-    "test": "echo \"No test specified\" && exit 0"
+    "build": "npm ci && npm link @quasar/cli && quasar build",
+    "serve": "quasar serve dist/spa --history"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
