@@ -30,7 +30,6 @@ app.use(express.static(path.join(__dirname, "../frontend/dist/spa")));
 const dbURI = process.env.dbURI
 const port = process.env.PORT || 3000
 
-app.use(express.static("public"))
 app.use(express.json())
 
 app.use(express.urlencoded({ extended: true }))
@@ -89,13 +88,9 @@ dbConnection
     })
   })
   .catch((err) => console.error(err))
-app.use((req,res)=>{
-  if (process.env.NODE_ENV == "PROD") {
-    res.sendFile(path.join(__dirname, "../frontend/dist/spa/index.html"));
-  }
-})
+
 app.use("/api", routes)
-app.use("*", (req, res) => {
+app.use((req, res) => {
   res.status("404").json({
     errorMessage: "404 - Not Found",
   })
