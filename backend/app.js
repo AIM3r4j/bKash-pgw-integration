@@ -90,3 +90,6 @@ dbConnection
   .catch((err) => console.error(err))
 
 app.use("/api", routes)
+app.use((req, res) => {
+  res.send(path.join(__dirname, "../frontend/dist/spa/index.html"))
+})
