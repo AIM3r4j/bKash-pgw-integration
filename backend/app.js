@@ -91,5 +91,5 @@ dbConnection
 
 app.use("/api", routes)
 app.use((req, res) => {
-  res.send(path.join(__dirname, "../frontend/dist/spa/index.html"))
+  res.sendFile(path.join(__dirname, "../frontend/dist/spa/index.html"))
 })
