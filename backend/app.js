@@ -90,8 +90,3 @@ dbConnection
   .catch((err) => console.error(err))
 
 app.use("/api", routes)
-app.use((req, res) => {
-  res.status("404").json({
-    errorMessage: "404 - Not Found",
-  })
-})
